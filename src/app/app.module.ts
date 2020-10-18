@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MenuComponent } from './menu/menu.component';
 import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MatListModule } from '@angular/material/list';
     MatToolbarModule,
     FlexLayoutModule,
     MatListModule,
+    MatGridListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
