@@ -1,6 +1,6 @@
 $lt-gray: #ddd;
 $background-dark: #4527a0;
-$background-light: #9575CD;
+$background-light:#7e57c2;
 $background-pale: #bcaaa4;
 
 @mixin zero-margin($pad-up-down, $pad-left-right) {
@@ -9,7 +9,7 @@ $background-pale: #bcaaa4;
 }
 
 .footer{
-    background-color: $background-dark;
+    background-color: $background-light;
     color: floralwhite;
     @include zero-margin(20px, 0px);
 }
