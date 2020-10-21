@@ -1,14 +1,8 @@
 @import '~@angular/material/theming';
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
 @include mat-core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
 $conFusion-primary: mat-palette($mat-blue);
-$conFusion-accent: mat-palette($mat-pink, A200, A100, A400);
+$conFusion-accent: mat-palette($mat-deep-purple, A700, A100, A900);
 
 // The warn palette is optional (defaults to red).
 $conFusion-warn: mat-palette($mat-red);
@@ -24,7 +18,7 @@ $conFusion-theme: mat-light-theme((
 
 // Define an alternate dark theme.
 $dark-primary: mat-palette($mat-brown, A200);
-$dark-accent:  mat-palette($mat-indigo, A100, A50, A200);
+$dark-accent:  mat-palette($mat-blue-grey, A100, A600, A200);
 $dark-warn:    mat-palette($mat-red, A100);
 $dark-theme:   mat-light-theme((
   color: (
@@ -34,9 +28,6 @@ $dark-theme:   mat-light-theme((
   )
 ));
 
-// Include the dark color styles inside of a block with a CSS class. You can make this
-// CSS class whatever you want. In this example, any component inside of an element with
-// `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
 .unicorn-dark-theme {
   @include angular-material-color($dark-theme);
 }
