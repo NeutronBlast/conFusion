@@ -10,7 +10,6 @@ import { Dish } from '../shared/dish';
 export class DishdetailComponent implements OnInit {
 
   @Input() dish: Dish;
-  @Input() comments: object;
 
   constructor() { }
 
