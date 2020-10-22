@@ -20,11 +20,11 @@ export const routes: Routes = [
         redirectTo: '/home',
         pathMatch: 'full'
     },
-    /*
     {
-        path: '/contact',
+        path: 'contactus',
         component: ContactComponent
-    },
+    }
+    /*
     {
         path: '/about',
         component: AboutComponent
