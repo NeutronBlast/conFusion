@@ -23,6 +23,7 @@ import { AboutComponent } from './about/about.component';
 /* Services */
 import { DishService } from './services/dish.service';
 import { PromotionsService } from './services/promotions.service';
+import { LeaderService } from './services/leader.service';
 
 /* Modules */
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -54,6 +55,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
   providers: [
     DishService,
     PromotionsService,
+    LeaderService
   ],
   bootstrap: [AppComponent]
 })
