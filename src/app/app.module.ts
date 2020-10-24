@@ -10,6 +10,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatDialogModule } from '@angular/material/dialog';
 
 /* Components */
 import { MenuComponent } from './menu/menu.component';
@@ -19,6 +20,8 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
+import { LoginComponent } from './login/login.component';
+
 
 /* Services */
 import { DishService } from './services/dish.service';
@@ -39,6 +42,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     HomeComponent,
     ContactComponent,
     AboutComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,11 +55,15 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     MatListModule,
     MatGridListModule,
     FontAwesomeModule,
+    MatDialogModule,
   ],
   providers: [
     DishService,
     PromotionsService,
     LeaderService
+  ], 
+  entryComponents: [
+    LoginComponent
   ],
   bootstrap: [AppComponent]
 })
