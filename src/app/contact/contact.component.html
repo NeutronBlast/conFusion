@@ -35,4 +35,64 @@
       </div>
     </div>
   </div>
+
+  <!-- Reactive form -->
+  <br><br>
+  <div class="container">
+    <div fxFlex fxOffset="20px" class="form-size">
+      <h2><strong>SEND US YOUR FEEDBACK</strong></h2>
+      <p>{{feedbackForm.value | json}}</p>
+  
+      <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+        <p>
+          <mat-form-field class="half-width mr-2" appearance="outline" color="accent">
+            <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
+          </mat-form-field>
+  
+          <mat-form-field class="half-width" appearance="outline" color="accent">
+            <input matInput formControlName="lastname" placeholder="Last Name" type="text" required>
+          </mat-form-field>
+        </p>
+  
+        <p>
+          <mat-form-field class="half-width mr-2" appearance="outline" color="accent">
+            <input matInput formControlName="telnum" placeholder="Tel Number" type="text">
+          </mat-form-field>
+  
+          <mat-form-field class="half-width" appearance="outline" color="accent">
+            <input matInput formControlName="email" placeholder="Email" type="email">
+          </mat-form-field>
+        </p>
+  
+        <table class="form-size">
+          <td>
+            <mat-slide-toggle formControlName="agree">
+              May we contact you?
+            </mat-slide-toggle>
+          </td>
+  
+          <td>
+            <mat-select placeholder="How?" formControlName="contacttype" appearance="outline">
+              <mat-option *ngFor="let ctype of contactType" [value]="ctype">
+                {{ctype}}
+              </mat-option>      
+            </mat-select>
+          </td>
+        </table>
+        <br><br>
+  
+        <p>
+          <mat-form-field class="full-width" appearance="outline" color="accent">
+            <textarea matInput formControlName="message" placeholder="Your Feedback" rows="12"></textarea>
+          </mat-form-field>
+        </p>
+  
+        <div dir="rtl">
+          <button type="submit" mat-raised-button class="con-toolbar mr-n7">Submit</button>
+        </div>
+  
+      </form>
+    </div>
+  </div>
+
 </div>
