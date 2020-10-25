@@ -43,24 +43,30 @@
       <h2><strong>SEND US YOUR FEEDBACK</strong></h2>
       <p>{{feedbackForm.value | json}}</p>
   
-      <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+      <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
         <p>
           <mat-form-field class="half-width mr-2" appearance="outline" color="accent">
             <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
+            <mat-error *ngIf="feedbackForm.get('firstname').hasError('required') && feedbackForm.get('firstname').touched">First Name is required</mat-error>
           </mat-form-field>
   
           <mat-form-field class="half-width" appearance="outline" color="accent">
             <input matInput formControlName="lastname" placeholder="Last Name" type="text" required>
+            <mat-error *ngIf="feedbackForm.get('lastname').hasError('required') && feedbackForm.get('lastname').touched">Last Name is required</mat-error>
           </mat-form-field>
         </p>
   
         <p>
           <mat-form-field class="half-width mr-2" appearance="outline" color="accent">
             <input matInput formControlName="telnum" placeholder="Tel Number" type="text">
+            <mat-error *ngIf="feedbackForm.get('telnum').hasError('required') && feedbackForm.get('telnum').touched">Telephone number is required</mat-error>
+
           </mat-form-field>
   
           <mat-form-field class="half-width" appearance="outline" color="accent">
             <input matInput formControlName="email" placeholder="Email" type="email">
+            <mat-error *ngIf="feedbackForm.get('email').hasError('required') && feedbackForm.get('email').touched">Email is required</mat-error>
+
           </mat-form-field>
         </p>
   
@@ -88,7 +94,7 @@
         </p>
   
         <div dir="rtl">
-          <button type="submit" mat-raised-button class="con-toolbar mr-n7">Submit</button>
+          <button type="submit" mat-raised-button class="con-toolbar mr-n7" [disabled]="feedbackForm.invalid">Submit</button>
         </div>
   
       </form>
