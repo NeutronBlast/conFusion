@@ -1,6 +1,4 @@
-<div class="container" 
-fxLayout="column" 
-fxLayoutGap="10px">
+<div class="container" fxLayout="column" fxLayoutGap="10px">
 
     <div fxFlex>
         <div>
@@ -20,7 +18,7 @@ fxLayoutGap="10px">
         You can selectively add elements to the DOM under certain conditions
         *ngSwitch=""
     -->
-    <div fxFlex>
+    <div fxFlex *ngIf="dishes">
         <mat-grid-list cols="2" rowHeight="200px">
             <mat-grid-tile *ngFor="let dish of dishes" [routerLink]="['/dishdetail', dish.id]" style="cursor: pointer">
                 <img height="200px" matListAvatar src="{{dish.image}}" alt="{{dish.name}}">
@@ -29,5 +27,11 @@ fxLayoutGap="10px">
                 </mat-grid-tile-footer>
             </mat-grid-tile>
         </mat-grid-list>
+    </div>
+
+    <div fxFlex fxLayout="column" fxLayoutAlign="center center" *ngIf="!dishes">
+        <mat-spinner color="accent"></mat-spinner>
+        <br>
+        <h4>Loading . . . Please wait</h4>
     </div>
 </div>

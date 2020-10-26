@@ -38,3 +38,9 @@
   </div>
 
 </div>
+
+<div fxFlex fxLayout="column" fxLayoutAlign="center center" *ngIf="!dish">
+    <mat-spinner color="accent"></mat-spinner>
+    <br>
+    <h4>Loading . . . Please wait</h4>
+</div>

@@ -19,6 +19,12 @@
   </mat-card-content>
 </mat-card>
 
+<div fxFlex fxLayout="column" fxLayoutAlign="center center" *ngIf="!dish">
+  <mat-spinner color="accent"></mat-spinner>
+  <br>
+  <h4>Loading . . . Please wait</h4>
+</div>
+
 <mat-card *ngIf="promotion" fxFlex>
   <mat-card-header>
     <div mat-card-avatar></div>
