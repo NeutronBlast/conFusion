@@ -25,7 +25,7 @@ export class DishService {
       // Simulate server latency with 2 second delay
         setTimeout(() => resolve(DISHES.filter((dish) => (dish.id === id))[0]), 2000);
     });*/
-    return of(DISHES.filter((dish => dish.id === id))[0]).pipe(delay(2000));
+    return of(DISHES.filter((dish => dish.id === id))[0]).pipe();
   }
 
   getFeaturedDish(): Observable<Dish> {

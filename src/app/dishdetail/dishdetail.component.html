@@ -42,6 +42,64 @@
             <div mat-line>-- {{comment.author}} {{comment.date | date:"MMM dd, yyyy"}}</div>
         </mat-list-item>
       </mat-list>
+      <br><br>
+      
+    <h3><strong>SEND US YOUR FEEDBACK</strong></h3>
+    <div *ngIf="commentForm.dirty && commentForm.valid">
+        <h5><strong>PREVIEW: </strong></h5>
+            <mat-list-item role="listItem">
+                <div mat-line *ngIf="commentForm.value.comment">
+                    <small>
+                        {{commentForm.value.comment}}
+                    </small>
+                </div>
+                <div mat-line>
+                    <small>
+                        {{commentForm.value.rating}} Stars
+                    </small>
+                </div>
+    
+                <div mat-line *ngIf="commentForm.value.author">
+                    <small>
+                        -- {{commentForm.value.author}}
+                    </small>
+                </div>
+            </mat-list-item>
+        <br><br>
+    </div>
+
+      <form novalidate [formGroup]="commentForm" #cform="ngForm" (ngSubmit)="onSubmit()">
+        <p>
+            <mat-form-field class="full-width" appearance="outline" color="accent">
+                <input matInput formControlName="author" placeholder="Author" type="text" required>
+                <mat-error *ngIf="formErrors.author">{{formErrors.author}}</mat-error>
+            </mat-form-field>
+        </p>
+
+        <p>
+            <mat-label>Score</mat-label>
+            <mat-slider class="full-width"
+            thumbLabel
+            tickInterval="1"
+            min="1"
+            max="5"
+            formControlName="rating"
+            required
+            ></mat-slider>
+            <mat-error *ngIf="formErrors.rating">{{formErrors.rating}}</mat-error>
+        </p>
+
+        <p>
+            <mat-form-field class="full-width" appearance="outline" color="accent">
+                <textarea matInput formControlName="comment" required placeholder="Your comments" rows="10"></textarea>
+                <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error>
+            </mat-form-field>
+        </p>
+
+        <div dir="rtl" class="full-width">
+            <button type="submit" mat-raised-button class="con-toolbar" [disabled]="commentForm.invalid">Submit</button>
+          </div>
+      </form>
   </div>
 
 </div>
