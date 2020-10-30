@@ -49,6 +49,7 @@ export class DishdetailComponent implements OnInit {
   prev: string;
   next: string;
   dishErrorMessage: string;
+  dishCopy: Dish;
 
   constructor(private dishService: DishService,
     private route: ActivatedRoute, 
@@ -68,9 +69,10 @@ export class DishdetailComponent implements OnInit {
     /* Fetches the ID from the parameter */
     this.route.params.pipe(switchMap((params: Params) => this.dishService.getDish(params['id'])))
       .subscribe((dish) => {
-        this.dish = dish, errorMessage => this.dishErrorMessage = <any>errorMessage;
+        this.dish = dish;
+        this.dishCopy = dish;
         this.setPrevNext(dish.id);
-      });
+      }, errorMessage => this.dishErrorMessage = <any>errorMessage)
   }
 
   setPrevNext(dishId: string){
@@ -153,7 +155,16 @@ export class DishdetailComponent implements OnInit {
     this.comment.comment = this.commentForm.value.comment;
     this.comment.date = new Date().toISOString();
 
-    this.dish.comments.push(this.comment);
+    this.dishCopy.comments.push(this.comment);
+    this.dishService.putDish(this.dishCopy)
+      .subscribe(dish => {
+        this.dish = dish;
+        this.dishCopy = dish;
+      }, errorMessage => {
+        this.dish = null;
+        this.dishCopy = null;
+        this.dishErrorMessage = <any>errorMessage
+      })
     
     // Reset form to normal state removing all the inputs
     this.commentForm.reset({
