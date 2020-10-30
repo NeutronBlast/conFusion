@@ -12,17 +12,22 @@
       <h3>{{dish.name | uppercase}}</h3>
     </mat-card-title>
   </mat-card-header>
-  <img mat-card-image src={{dish.image}} alt={{dish.name}}>
+  <img mat-card-image src={{BaseURL + dish.image}} alt={{dish.name}}>
   <mat-card-content>
     <p>{{dish.description}}
     </p>
   </mat-card-content>
 </mat-card>
 
-<div fxFlex fxLayout="column" fxLayoutAlign="center center" *ngIf="!dish">
+<div fxFlex fxLayout="column" fxLayoutAlign="center center" *ngIf="!dish && !dishErrorMessage">
   <mat-spinner color="accent"></mat-spinner>
   <br>
   <h4>Loading . . . Please wait</h4>
+</div>
+
+<div fxFlex *ngIf="dishErrorMessage">
+  <h2><strong>ERROR !</strong></h2>
+  <h4>{{dishErrorMessage}}</h4>
 </div>
 
 <mat-card *ngIf="promotion" fxFlex>

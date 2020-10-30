@@ -21,7 +21,7 @@
     <div fxFlex *ngIf="dishes">
         <mat-grid-list cols="2" rowHeight="200px">
             <mat-grid-tile *ngFor="let dish of dishes" [routerLink]="['/dishdetail', dish.id]" style="cursor: pointer">
-                <img height="200px" matListAvatar src="{{dish.image}}" alt="{{dish.name}}">
+                <img height="200px" matListAvatar src="{{BaseURL + dish.image}}" alt="{{dish.name}}">
                 <mat-grid-tile-footer>
                     <h1>{{dish.name | uppercase}}</h1>
                 </mat-grid-tile-footer>
@@ -29,9 +29,14 @@
         </mat-grid-list>
     </div>
 
-    <div fxFlex fxLayout="column" fxLayoutAlign="center center" *ngIf="!dishes">
+    <div fxFlex fxLayout="column" fxLayoutAlign="center center" *ngIf="!dishes || errorMessage">
         <mat-spinner color="accent"></mat-spinner>
         <br>
         <h4>Loading . . . Please wait</h4>
+    </div>
+
+    <div fxFlex *ngIf="errorMessage">
+        <h2><strong>ERROR !</strong></h2>
+        <h4>{{errorMessage}}</h4>
     </div>
 </div>
