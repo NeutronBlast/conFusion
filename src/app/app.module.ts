@@ -41,6 +41,7 @@ import { ProcessHttpMsgService } from './services/process-http-msg.service'
 /* Modules */
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { baseURL } from './shared/baseURL';
+import { HighlightDirective } from './directives/highlight.directive';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { baseURL } from './shared/baseURL';
     ContactComponent,
     AboutComponent,
     LoginComponent,
+    HighlightDirective,
   ],
   imports: [
     BrowserModule,
