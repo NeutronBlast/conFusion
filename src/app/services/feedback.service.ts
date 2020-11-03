@@ -22,7 +22,6 @@ export class FeedbackService {
     };
 
     return this.http.post<Feedback>(baseURL + 'feedback', feedback, httpOptions)
-      .pipe(delay(5000))
       .pipe(catchError(this.processHTTPMsgService.handleError));
   }
 }

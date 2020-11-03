@@ -171,6 +171,6 @@ export class ContactComponent implements OnInit {
       this.sent = false;
       this.visibility = 'hidden';
       this.formVisibility = 'shown';
-    }, 10000)
+    }, 5000)
   }
 }
