@@ -1,16 +1,27 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback, ContactType } from '../shared/feedback';
+import { FeedbackService } from '../services/feedback.service';
+import { visibility, expand } from '../animations/app.animation';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+  styleUrls: ['./contact.component.scss'],
+  animations: [
+    expand(),
+    visibility()
+  ]
 })
 export class ContactComponent implements OnInit {
   feedbackForm: FormGroup;
   feedback: Feedback;
+  feedbackResponse: Feedback;
+  feedbackErrorMessage: string;
   contactType = ContactType;
+  visibility = 'hidden';
+  formVisibility = 'shown';
+  sent = false;
 
   // Reset form back to pristine value
   @ViewChild('fform') feedbackFormDirective;
@@ -46,7 +57,8 @@ export class ContactComponent implements OnInit {
     }
   }
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+    private feedbackService: FeedbackService) {
     this.createForm();
   }
 
@@ -127,8 +139,17 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit(){
+    this.sent = true;
     this.feedback = this.feedbackForm.value;
-    console.log(this.feedback);
+
+    this.feedbackService.postFeedback(this.feedback)
+      .subscribe(feedback => {
+        this.feedbackResponse = feedback;
+        console.log(feedback);
+      }, errorMessage => {
+        this.feedbackErrorMessage = <any>errorMessage;
+      })
+
     
     // Reset form to normal state removing all the inputs
     this.feedbackForm.reset({
@@ -142,5 +163,14 @@ export class ContactComponent implements OnInit {
     });
 
     this.feedbackFormDirective.resetForm();
+    this.visibility = 'shown';
+    this.formVisibility = 'hidden';
+
+    setTimeout(() => {
+      this.feedbackResponse = null;
+      this.sent = false;
+      this.visibility = 'hidden';
+      this.formVisibility = 'shown';
+    }, 10000)
   }
 }
